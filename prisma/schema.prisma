@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+// uses connection pooling
+// uses a direct connection
+
+model Resam {
+  id             String           @id @default(uuid())
+  title          String           @default("Sem titulo")
+  code           String
+  description    String
+  note           String
+  entry          String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  Exemplo        Exemple[]
+  Administrative Administrative[]
+
+  @@map("tb_resam")
+}
+
+model Exemple {
+  id          String @id @default(uuid())
+  description String
+  resam_id    String
+  resam       Resam  @relation(fields: [resam_id], references: [id], onDelete: Cascade)
+
+  @@map("tb_exemples")
+}
+
+model Administrative {
+  id          String @id @default(uuid())
+  measure     String
+  description String
+  resam_id    String
+  resam       Resam  @relation(fields: [resam_id], references: [id])
+  resamId     String
+
+  @@map("tb_administrative")
+}
