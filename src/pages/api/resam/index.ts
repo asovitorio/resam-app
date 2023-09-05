@@ -12,19 +12,31 @@ export default async function handler(
     const label = String(Object.keys(req.query)[0]);
     const value = `'%${req.query[label]}%'`;
     try {
-      const query = `SELECT * FROM tb_resam`;
-      console.log(query);
       const resam =
-        await prisma.$queryRaw`SELECT * FROM tb_resam WHERE ${Prisma.raw(label)} LIKE ${Prisma.raw(value)}`;
+        await prisma.$queryRaw`SELECT * FROM tb_resam WHERE ${Prisma.raw(
+          label
+        )} LIKE ${Prisma.raw(value)}`;
       // const resam =  await prisma.resam.findMany()
       return res.status(200).json(resam);
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(401).json({erro:error.message});
+        return res.status(401).json({ erro: error.message });
       }
     }
   }
   if (req.method === "POST") {
+    try {
+      const data = req.body;
+
+      const resam = await prisma.resam.create({
+        data,
+      });
+      return res.status(201).json(resam);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(401).json({ erro: error.message });
+      }
+    }
     return res.status(200).json({ msg: "teste" });
   }
 }
