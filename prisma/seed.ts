@@ -9,7 +9,7 @@ const resam = [
     entry: "prefixo",
   },
   {
-    title: "Ignição com defeito",
+    title: "Padronização de Layout",
     code: "M01",
     description:
       "Veículo ou equipamento em mau estado de conservação ou em desacordo com o determinado pela SPTrans, no que se refere à padronização de identidade visual, tais como: dimensões,localização e cores da pintura, layout interno, placas, painéis informativos,     legendas, números, prefixos e demais inscrições, inclusive, de publicidade ou qualquer outro item de comunicação visual.",
