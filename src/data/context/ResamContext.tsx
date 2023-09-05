@@ -13,7 +13,7 @@ type ResamProps = {
 const ResamContext = createContext({})
 
 async function byId<ResamProps>(id: string) {
-  const resposta = await fetch(`http://localhost:3000/api/busca-resam/${id}`)
+  const resposta = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/busca-resam/${id}`)
   const resam = await resposta.json()
   return resam
 }
@@ -22,7 +22,7 @@ async function search(search: any) {
   const value = search[label]
 
   const resposta = await fetch(
-    `http://localhost:3000/api/resam?${label}=${value}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/resam?${label}=${value}`,
   )
   const resam = await resposta.json()
   return resam
