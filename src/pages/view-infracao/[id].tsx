@@ -17,7 +17,7 @@ export default function ViewInfracao(props: IResam) {
   const resamFind: any = useResam()
   useEffect(() => {
     resamFind.byId(String(id)).then((r: any) => setResam(r))
-  }, [resam])
+  }, [])
 
   return (
     <Layout titulo="Infração" subtitulo={String(resam?.title)}>

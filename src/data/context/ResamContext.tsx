@@ -24,6 +24,9 @@ async function search(search: any) {
   const resposta = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/resam?${label}=${value}`,
   )
+  // const resposta = await fetch(
+  //   `${process.env.NEXT_PUBLIC_BASE_URL}?${label}=${value}`,
+  // )
   const resam = await resposta.json()
   return resam
 }

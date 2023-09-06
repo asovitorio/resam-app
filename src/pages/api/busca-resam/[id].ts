@@ -14,7 +14,9 @@ export default async function handler(
     const resam = await prisma.resam.findFirst({
       where: {
         id: String(req.query.id),
+      
       },
+     
       select: {
         id: true,
         code:true,
@@ -30,7 +32,7 @@ export default async function handler(
         }
       },
       
-      
+    
     });
     return res.status(200).json(resam);
   }
